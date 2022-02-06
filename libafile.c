@@ -1,8 +1,13 @@
+#include <stdio.h>
+#include <string.h>
 
-int add(int x, int y){
-  return x+y;
-}
+#define MAXLINE 80
 
-int sub(int x, int y){
-  return x-y;
+void readFirstLine(char *file,char *line){
+  FILE *fp = NULL;
+  fp = fopen(file, "r");
+  if (!fp) {
+    perror ("File open error!\n");
+  }
+  fscanf(fp, "%[^\n]", line);
 }
