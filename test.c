@@ -3,19 +3,25 @@
 
 #define MAXLINE 80
 
-void readFirstLine(char *file,char *line){
-  FILE *fp = NULL;
-  fp = fopen(file, "r");
-  if (!fp) {
-    perror ("File open error!\n");
+void ram(char *file, char *s, int N) {
+  FILE *fp = fopen(file, "r");
+  char line[MAXLINE];
+  int i = 0;
+  int x = 0;
+
+  while (fgets(line, sizeof(line), fp)) {
+    i++;
+    if (i == N) {
+      sscanf(line, "%*s %d", &x);
+      strcpy(s, line);
+    }
   }
-  fscanf(fp, "%[^\n]", line);
+  fclose(fp);
 }
 
-int 
-main(int argc, char *argv[]) {
-  char line[MAXLINE];
+int main(int argc, char *argv[]) {
+  char s[MAXLINE];
 
-  readFirstLine(argv[1], line);
-  printf("%s\n",line);
+  ram("/proc/meminfo",s,3);
+  printf("%s\n", s);
 }
