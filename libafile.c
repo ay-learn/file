@@ -10,4 +10,23 @@ void readFirstLine(char *file,char *line){
     perror ("File open error!\n");
   }
   fscanf(fp, "%[^\n]", line);
+  fclose(fp);
+}
+
+
+
+void readOneLine(char *file, char *s, int N) {
+  FILE *fp = fopen(file, "r");
+  char line[MAXLINE];
+  int i = 0;
+  int x = 0;
+
+  while (fgets(line, sizeof(line), fp)) {
+    i++;
+    if (i == N) {
+      sscanf(line, "%*s %d", &x);
+      strcpy(s, line);
+    }
+  }
+  fclose(fp);
 }
