@@ -30,3 +30,16 @@ void readOneLine(char *file, char *s, int N) {
   }
   fclose(fp);
 }
+
+int fgetint(char *file) {
+  FILE *fp = fopen(file, "r");
+  char line[MAXLINE];
+  int i = 0;
+  int x = 0;
+
+  fgets(line, sizeof(line),fp);
+  sscanf(line, "%d", &x);
+  fclose(fp);
+  return x;
+}
+

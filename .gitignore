@@ -6,3 +6,4 @@ test
 compile_commands.json
 txt.txt
 .cache/
+test.c
