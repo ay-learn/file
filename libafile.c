@@ -1,5 +1,7 @@
+#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include "file.h"
 
 #define MAXLINE 80
 
@@ -43,3 +45,22 @@ int fgetint(char *file) {
   return x;
 }
 
+void fgetString(char *file,char *s) {
+  FILE *fp = fopen(file, "r");
+  fgets(s, sizeof(s),fp);
+}
+
+// run shell command and get first output from stdout 
+void stdoutOneline(char *s_in,char *s_out) {
+  FILE *popen(const char *command, const char *mode);
+  int pclose(FILE * stream);
+  FILE *file;
+
+  file = popen(s_in, "r");
+  if (file == NULL) {
+    perror("popen");
+    exit(EXIT_FAILURE);
+  }
+  fgets(s_out, sizeof(s_out), file);
+  pclose(file);
+}
