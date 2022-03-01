@@ -16,8 +16,8 @@ libafile.so: libafile.c file.h
 test.o: test.c
 	$(CC) -c test.c $(CFLAGS)
 
-test: test.o 
-	$(CC) test.o -o test $(CFLAGS)
+test2: test2.o 
+	$(CC) test2.o -o test2 $(CFLAGS)
 
 
 clean:
