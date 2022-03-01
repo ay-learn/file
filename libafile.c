@@ -62,3 +62,19 @@ void stdoutOneline(char *s_in, char *s_out) {
   fgets(s_out, sizeof(s_out), file);
   pclose(file);
 }
+
+void writeIntToFile(char *filename,int *x){
+    FILE *fp = fopen(filename, "w");
+    if (fp) {
+        fprintf(fp, "%d\n", *x);
+        fclose(fp);
+    }
+}
+
+void writeTowIntToFile(char *filename,int *x,int *y){
+    FILE *fp = fopen(filename, "w");
+    if (fp) {
+        fprintf(fp, "%d %d\n", *x,*y);
+        fclose(fp);
+    }
+}
