@@ -8,8 +8,9 @@
 void readFirstLine(char *file, char *line) {
   FILE *fp = NULL;
   fp = fopen(file, "r");
-  if (!fp) {
-    perror("File open error!\n");
+  if (file == NULL) {
+    perror("popen");
+    exit(EXIT_FAILURE);
   }
   fscanf(fp, "%[^\n]", line);
   fclose(fp);
@@ -17,6 +18,10 @@ void readFirstLine(char *file, char *line) {
 
 void readOneLine(char *file, char *s, int N) {
   FILE *fp = fopen(file, "r");
+  if (file == NULL) {
+    perror("popen");
+    exit(EXIT_FAILURE);
+  }
   char line[MAXLINE];
   int i = 0;
   int x = 0;
@@ -33,6 +38,10 @@ void readOneLine(char *file, char *s, int N) {
 
 int fgetint(char *file) {
   FILE *fp = fopen(file, "r");
+  if (file == NULL) {
+    perror("popen");
+    exit(EXIT_FAILURE);
+  }
   char line[MAXLINE];
   int i = 0;
   int x = 0;
@@ -45,7 +54,12 @@ int fgetint(char *file) {
 
 void fgetString(char *file, char *s) {
   FILE *fp = fopen(file, "r");
+  if (file == NULL) {
+    perror("popen");
+    exit(EXIT_FAILURE);
+  }
   fgets(s, sizeof(s), fp);
+  fclose(fp);
 }
 
 // run shell command and get first output from stdout
@@ -63,18 +77,32 @@ void stdoutOneline(char *s_in, char *s_out) {
   pclose(file);
 }
 
-void writeIntToFile(char *filename,int *x){
-    FILE *fp = fopen(filename, "w");
-    if (fp) {
-        fprintf(fp, "%d\n", *x);
-        fclose(fp);
-    }
+void writeIntToFile(char *file, int *x) {
+  FILE *fp = fopen(file, "w");
+  if (file == NULL) {
+    perror("popen");
+    exit(EXIT_FAILURE);
+  }
+  fprintf(fp, "%d\n", *x);
+  fclose(fp);
 }
 
-void writeTowIntToFile(char *filename,int *x,int *y){
-    FILE *fp = fopen(filename, "w");
-    if (fp) {
-        fprintf(fp, "%d %d\n", *x,*y);
-        fclose(fp);
-    }
+void writeTowIntToFile(char *file, int *x, int *y) {
+  FILE *fp = fopen(file, "w");
+  if (file == NULL) {
+    perror("popen");
+    exit(EXIT_FAILURE);
+  }
+  fprintf(fp, "%d %d\n", *x, *y);
+  fclose(fp);
+}
+
+void writeSixIntToFile(char *file, int *x1, int *x2, int *x3, int *x4, int *x5, int *x6) {
+  FILE *fp = fopen(file, "w");
+  if (file == NULL) {
+    perror("popen");
+    exit(EXIT_FAILURE);
+  }
+  fprintf(fp, "%d %d %d %d %d %d\n", *x1, *x2, *x3, *x4, *x5, *x6);
+  fclose(fp);
 }
