@@ -2,8 +2,7 @@
 *.o
 .ccls/
 libafile.so
-test
 compile_commands.json
-txt.txt
+*.txt
 .cache/
-test.c
+test*
